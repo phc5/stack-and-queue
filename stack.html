@@ -50,29 +50,56 @@
   // console.log("length: " + s.length());
   // console.log("top of stack:", s.peek());
   // console.log(s.pop());
-  function is_palindrome(string) {
-    let reverse = "";
-    string = string.toLowerCase().replace(/[^a-z]/g, "");
-    let splitUp = string.split("");
+  
+  // function is_palindrome(string) {
+  //   let reverse = "";
+  //   string = string.toLowerCase().replace(/[^a-z]/g, "");
+  //   let splitUp = string.split("");
 
-    for (let i = 0; i < splitUp.length; i++) {
-      s.push(splitUp[i]);
+  //   for (let i = 0; i < splitUp.length; i++) {
+  //     s.push(splitUp[i]);
+  //   }
+  //   for (let j = s.length(); j > 0; j--) {
+  //     reverse += s.pop();
+  //   }
+  //   if (string === reverse) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
+  // console.log(is_palindrome("DaD bOb dAd"));
+  // console.log(is_palindrome("something else"));
+  // console.log(is_palindrome("dad"));
+  // console.log(is_palindrome("A man, a plan, a canal: Panama"));
+  // console.log(is_palindrome("1001"));
+
+  var st = new Stack();
+  function matchingParen(string) {
+    let count = 0; 
+    let open= { '(' : ')', '[' : ']', '{' : '}'};
+    let closed= { ')' : true, ']' : true, '}' : true};
+
+    for (let i = 0; i < string.length; i++) {
+      let char = string[i];
+      if (open[char]) {
+        st.push(char);
+      } else if (closed[char]) {
+        count++;
+        if (open[st.pop()] !== char) {
+          console.log("Error at pos: " + i);
+          return false;
+        }
+      }
     }
-    for (let j = s.length(); j > 0; j--) {
-      reverse += s.pop();
-    }
-    if (string === reverse) {
+    if (st.top === 0) {
       return true;
     } else {
+      console.log("Error at pos: " + count);
       return false;
     }
   }
-
-  console.log(is_palindrome("DaD bOb dAd"));
-  console.log(is_palindrome("something else"));
-  console.log(is_palindrome("dad"));
-  console.log(is_palindrome("A man, a plan, a canal: Panama"));
-  console.log(is_palindrome("1001"));
+  console.log(matchingParen("([)]"))
 </script>
 </html>
 
