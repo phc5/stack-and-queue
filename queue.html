@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Queue</title>
+</head>
+<body>
+	<h1>This is an implementation of a queue.</h1>
+</body>
+<script>
+	function Queue() { 
+	    this.dataStore = []; 
+	    this.enqueue = enqueue; 
+	    this.dequeue = dequeue; 
+	    this.front = front; 
+	    this.back = back; 
+	    this.toString = toString; 
+	} 
+	//The enqueue() function adds an element to the end of a queue: O(1)
+	function enqueue(element) { 
+	    this.dataStore.push(element); 
+	} 
+	//The dequeue() function removes an element from the front of a queue: O(1)
+	function dequeue() { 
+	    return this.dataStore.shift();
+	}
+
+	// O(1)
+	function front() {
+		return this.dataStore[0];
+	}
+
+	// O(1)
+	function back() {
+		return this.dataStore[this.dataStore.length - 1];
+	}
+
+	// O(n)
+	function toString() {
+		return "front [" + this.dataStore + "] back";
+	}
+
+	let q = new Queue();
+	console.log("Initial queue: " + q.toString());
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(3);
+	q.enqueue(4);
+	console.log("After enqueue: " + q.toString());
+	console.log("dequeue: " + q.dequeue());
+	console.log("After dequeue: " + q.toString());
+	console.log("front: " + q.front());
+	console.log("back: " + q.back());
+</script>
+</html>

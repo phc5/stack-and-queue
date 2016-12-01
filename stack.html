@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stack</title>
+</head>
+<body>
+  <h1>This is an implementation of a stack.</h1>
+</body>
+<script>
+  function Stack() {
+    this.dataStore = [];
+    this.top = 0;
+    this.push = push;
+    this.pop = pop;
+    this.peek = peek;
+    this.length = length;
+    this.display = display;
+  }
+
+  // O(1)
+  function push(element) {
+    this.dataStore[this.top++] = element;
+  }
+
+  // O(n)
+  function peek() {
+    return this.dataStore[this.top-1];
+  }
+
+  // O(1)
+  function pop() {
+    return this.dataStore[--this.top];
+  }
+
+  // O(n)
+  function display() {
+    console.log("bottom [" + this.dataStore + "] top");
+  };
+
+  // O(1)
+  function length() {
+    return this.top;
+  }
+
+  var s = new Stack();
+  // s.push("Joe");
+  // s.push("Tauhida");
+  // s.push(5);
+  // s.display();
+  // console.log("length: " + s.length());
+  // console.log("top of stack:", s.peek());
+  // console.log(s.pop());
+  function is_palindrome(string) {
+    let reverse = "";
+    string = string.toLowerCase().replace(/[^a-z]/g, "");
+    let splitUp = string.split("");
+
+    for (let i = 0; i < splitUp.length; i++) {
+      s.push(splitUp[i]);
+    }
+    for (let j = s.length(); j > 0; j--) {
+      reverse += s.pop();
+    }
+    if (string === reverse) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  console.log(is_palindrome("DaD bOb dAd"));
+  console.log(is_palindrome("something else"));
+  console.log(is_palindrome("dad"));
+  console.log(is_palindrome("A man, a plan, a canal: Panama"));
+  console.log(is_palindrome("1001"));
+</script>
+</html>
+
