@@ -42,14 +42,14 @@
     return this.top;
   }
 
-  var s = new Stack();
-  s.push("Joe");
-  s.push("Tauhida");
-  s.push(5);
-  s.display();
-  console.log("length: " + s.length());
-  console.log("top of stack:", s.peek());
-  console.log(s.pop());
+  // var s = new Stack();
+  // s.push("Joe");
+  // s.push("Tauhida");
+  // s.push(5);
+  // s.display();
+  // console.log("length: " + s.length());
+  // console.log("top of stack:", s.peek());
+  // console.log(s.pop());
   
   // function is_palindrome(string) {
   //   let reverse = "";
@@ -82,15 +82,17 @@
     let closed= { ')' : true, ']' : true, '}' : true};
 
     for (let i = 0; i < string.length; i++) {
-      let char = string[i];
-      if (open[char]) {
-        st.push(char);
-      } else if (closed[char]) {
-        if (open[st.pop()] !== char) {
-          console.log("Error at pos: " + i);
-          return false;
+      if (string[i] === '(' || string[i] === ')') {
+        let char = string[i];
+        if (open[char]) {
+          st.push(char);
+        } else if (closed[char]) {
+          if (open[st.pop()] !== char) {
+            console.log("Error at pos: " + i);
+            return false;
+          }
+          count++;
         }
-        count++;
       }
     }
 
@@ -101,7 +103,7 @@
       return false;
     }
   }
-  console.log(matchingParen("(())"));
+  console.log(matchingParen("ha(aa"));
 </script>
 </html>
 
