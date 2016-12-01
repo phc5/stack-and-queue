@@ -14,6 +14,7 @@
 	    this.front = front; 
 	    this.back = back; 
 	    this.toString = toString; 
+	    this.length = length;
 	} 
 	//The enqueue() function adds an element to the end of a queue: O(1)
 	function enqueue(element) { 
@@ -39,16 +40,43 @@
 		return "front [" + this.dataStore + "] back";
 	}
 
-	let q = new Queue();
-	// console.log("Initial queue: " + q.toString());
-	// q.enqueue(1);
-	// q.enqueue(2);
-	// q.enqueue(3);
-	// q.enqueue(4);
-	// console.log("After enqueue: " + q.toString());
-	// console.log("dequeue: " + q.dequeue());
-	// console.log("After dequeue: " + q.toString());
-	// console.log("front: " + q.front());
-	// console.log("back: " + q.back());
+	function length() {
+		return this.dataStore.length;
+	}
+
+	function pair(line) {
+		let men = [];
+		let women = [];
+		for (var i = line.length(); i > 0; i--) {
+			if (line.dequeue() === 'M') {
+				if (women.length !== 0) {
+					console.log("Found a woman for M " + i);
+					women.pop();
+				} else {
+					men.push('M');
+				}
+			} else {
+				if (men.length !== 0) {
+					console.log("Found a man for W " + i);
+					men.pop();
+				} else {
+					women.push('W');
+				}
+			}
+		}
+		console.log("Remaining number of men: " + men.length);
+		console.log("Remaining number of women: " + women.length);
+	}
+	let line = new Queue();
+	line.enqueue('M');
+	line.enqueue('M');
+	line.enqueue('W');
+	line.enqueue('M');
+	line.enqueue('W');
+	line.enqueue('W');
+	line.enqueue('M');
+	line.enqueue('W');
+	line.enqueue('W');
+	pair(line);
 </script>
 </html>
