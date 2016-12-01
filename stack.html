@@ -76,22 +76,18 @@
   // console.log(is_palindrome("1001"));
 
   var st = new Stack();
-  function matchingParen(string) {
-    let count = 0; 
+  function matchingParen(string) { 
     let open= { '(' : ')', '[' : ']', '{' : '}'};
     let closed= { ')' : true, ']' : true, '}' : true};
 
     for (let i = 0; i < string.length; i++) {
-      if (string[i] === '(' || string[i] === ')') {
-        let char = string[i];
-        if (open[char]) {
-          st.push(char);
-        } else if (closed[char]) {
-          if (open[st.pop()] !== char) {
-            console.log("Error at pos: " + i);
-            return false;
-          }
-          count++;
+      let char = string[i];
+      if (open[char]) {
+        st.push([i, char]);
+      } else if (closed[char]) {
+        if (open[st.pop()[1]] !== char) {
+          console.log("Error at pos: " + i);
+          return false;
         }
       }
     }
@@ -99,11 +95,11 @@
     if (st.top === 0) {
       return true;
     } else {
-      console.log("Error at pos: " + count);
+      console.log("Error at pos: " + st.pop()[0]);
       return false;
     }
   }
-  console.log(matchingParen("ha(aa"));
+  console.log(matchingParen("(())"));
 </script>
 </html>
 
